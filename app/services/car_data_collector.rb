@@ -37,11 +37,7 @@ class CarDataCollector
     for car in carlist["results"]
       carID = car["VIN"] #The Car ID is referred to as VIN on the Tesla website
       carPrice = car["Price"].to_i
-      if (ModelSdatum.where(carID: carID).any?)
-        ModelSdatum.find_by(carID: carID).update(carPrice: carPrice)
-      else
-        ModelSdatum.create!({carID: carID,carPrice: carPrice})
-      end
+      ModelSdatum.create!({carID: carID,carPrice: carPrice})
     end
   end
 end
