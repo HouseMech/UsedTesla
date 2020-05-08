@@ -1,6 +1,6 @@
 class ModelSdatum < ApplicationRecord
 
-  def getData
+  def initialize
     conn = Faraday.new(
       url: 'https://www.tesla.com',
       headers: {'Content-Type' => 'application/json'}
