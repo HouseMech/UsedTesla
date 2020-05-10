@@ -1,5 +1,6 @@
 class CarDataCollector
-  def getDataForModelS
+  #Ensure that the model is entered as a string so "ms" corresponds to the Model S and "m3" would correspond to the Model 3
+  def getData(model)
     conn = Faraday.new(
       url: 'https://www.tesla.com',
       headers: {'Content-Type' => 'application/json'}
@@ -8,7 +9,7 @@ class CarDataCollector
     params = {
       query: {
         query: {
-          model: "ms",
+          model: model,
           condition: "used",
           options: {},
           arrangeby: "Price",
@@ -37,7 +38,13 @@ class CarDataCollector
     for car in carlist["results"]
       carID = car["VIN"] #The Car ID is referred to as VIN on the Tesla website
       carPrice = car["Price"].to_i
-      ModelSdatum.create!({carID: carID,carPrice: carPrice})
+      if model == "ms"
+        ModelSdatum.create!({carID: carID,carPrice: carPrice})
+      elsif model == "mx"
+        ModelXDatum.create!({carID: carID,carPrice: carPrice})
+      elsif model == "m3"
+        Model3Datum.create!({carID: carID,carPrice: carPrice})
+      end
     end
   end
 end
