@@ -28,12 +28,6 @@ ActiveRecord::Schema.define(version: 2020_05_11_210652) do
     t.integer "carPrice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "carModel"
-    t.boolean "autopilot"
-    t.string "paint"
-    t.string "wheels"
-    t.string "interiorDecor"
-    t.string "roof"
   end
 
   create_table "model_s_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -41,12 +35,6 @@ ActiveRecord::Schema.define(version: 2020_05_11_210652) do
     t.datetime "updated_at", null: false
     t.string "carID"
     t.integer "carPrice"
-    t.string "carModel"
-    t.boolean "autopilot"
-    t.string "paint"
-    t.string "wheels"
-    t.string "interiorDecor"
-    t.string "roof"
   end
 
   create_table "model_x_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -54,12 +42,6 @@ ActiveRecord::Schema.define(version: 2020_05_11_210652) do
     t.integer "carPrice"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "carModel"
-    t.boolean "autopilot"
-    t.string "paint"
-    t.string "wheels"
-    t.string "interiorDecor"
-    t.string "roof"
   end
 
 end
