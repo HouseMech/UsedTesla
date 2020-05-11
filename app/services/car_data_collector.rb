@@ -39,7 +39,7 @@ class CarDataCollector
       carID = car["VIN"] #The Car ID is referred to as VIN on the Tesla website
       carPrice = car["Price"].to_i
       if model == "ms"
-        ModelSdatum.create!({carID: carID,carPrice: carPrice})
+        ModelSDatum.create!({carID: carID,carPrice: carPrice})
       elsif model == "mx"
         ModelXDatum.create!({carID: carID,carPrice: carPrice})
       elsif model == "m3"

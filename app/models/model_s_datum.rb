@@ -1,0 +1,2 @@
+class ModelSDatum < ApplicationRecord
+end

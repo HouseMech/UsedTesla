@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_05_11_210652) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "model3_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "model_3_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "carID"
     t.integer "carPrice"
     t.datetime "created_at", null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2020_05_11_210652) do
     t.string "roof"
   end
 
-  create_table "model_sdata", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "model_s_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "carID"
