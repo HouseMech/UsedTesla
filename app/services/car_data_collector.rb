@@ -38,11 +38,11 @@ class CarDataCollector
     for car in carlist["results"]
       carID = car["VIN"] #The Car ID is referred to as VIN on the Tesla website
       carPrice = car["Price"].to_i
-      if Car.exists?(carID: carID)
-        @selected_car = Car.find_by!(carID: carID)
+      if Car.exists?(car_id: carID)
+        @selected_car = Car.find_by!(car_id: carID)
       else
-        Car.create!(carModel: model,carID: carID, autopilot: true, paint:car["OptionCodeSpecs"]["C_OPTS"]["options"][0]["name"], interiorDecor: car["OptionCodeSpecs"]["C_OPTS"]["options"][2]["name"])
-        @selected_car = Car.find_by!(carID: carID)
+        Car.create!(car_model: model,car_id: carID, autopilot: true, paint:car["OptionCodeSpecs"]["C_OPTS"]["options"][0]["name"], interior_decor: car["OptionCodeSpecs"]["C_OPTS"]["options"][2]["name"])
+        @selected_car = Car.find_by!(car_id: carID)
       end
 
       if model == "ms"
@@ -84,12 +84,9 @@ class CarDataCollector
         outsideSearch: false
       }.to_json
     }
-
-
     resp = conn.get('inventory/api/v1/inventory-results') do |req|
       req.params = params
     end
     JSON.parse(resp.body)
-
   end
 end
