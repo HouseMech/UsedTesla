@@ -1,2 +1,0 @@
-class ModelSdatum < ApplicationRecord
-end
