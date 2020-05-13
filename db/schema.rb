@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_13_191332) do
+ActiveRecord::Schema.define(version: 2020_05_13_194455) do
 
   create_table "car_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "car_price"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_05_13_191332) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "tires"
-    t.integer "acceleration_time"
+    t.float "acceleration_time"
     t.integer "top_speed"
     t.integer "battery_range"
   end
