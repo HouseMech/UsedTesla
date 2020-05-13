@@ -41,7 +41,16 @@ class CarDataCollector
       if Car.exists?(car_id: carID)
         @selected_car = Car.find_by!(car_id: carID)
       else
-        Car.create!(car_model: model,car_id: carID, autopilot: true, paint:car["OptionCodeSpecs"]["C_OPTS"]["options"][0]["name"], interior_decor: car["OptionCodeSpecs"]["C_OPTS"]["options"][2]["name"])
+        Car.create!(car_model: model,
+          car_id: carID,
+          autopilot: true,
+          paint:car["OptionCodeSpecs"]["C_OPTS"]["options"][0]["name"],
+          interior_decor: car["OptionCodeSpecs"]["C_OPTS"]["options"][2]["name"],
+          tires: car["OptionCodeSpecs"]["C_OPTS"]["options"][1]["name"],
+          acceleration_time: car["OptionCodeSpecs"]["C_SPECS"]["options"][0]["name"].to_f,
+          top_speed: car["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i,
+          battery_range: car["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i
+        )
         @selected_car = Car.find_by!(car_id: carID)
       end
       @selected_car.car_data.create!({car_id: carID, car_price: carPrice})
