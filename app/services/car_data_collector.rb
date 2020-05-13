@@ -44,14 +44,7 @@ class CarDataCollector
         Car.create!(car_model: model,car_id: carID, autopilot: true, paint:car["OptionCodeSpecs"]["C_OPTS"]["options"][0]["name"], interior_decor: car["OptionCodeSpecs"]["C_OPTS"]["options"][2]["name"])
         @selected_car = Car.find_by!(car_id: carID)
       end
-
-      if model == "ms"
-        @selected_car.model_s_data.create!({car_id: carID, car_price: carPrice})
-      elsif model == "mx"
-        @selected_car.model_x_data.create!({car_id: carID, car_price: carPrice})
-      elsif model == "m3"
-        @selected_car.model_three_data.create!({car_id: carID, car_price: carPrice})
-      end
+      @selected_car.car_data.create!({car_id: carID, car_price: carPrice})
     end
   end
 
