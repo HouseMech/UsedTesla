@@ -1,9 +1,6 @@
-class ModelXDataCollector
-  def self.call
-    new.call
-  end
+class CarDataCollector
 
-  def call
+  def call(model)
     conn = Faraday.new(
       url: 'https://www.tesla.com',
       headers: {'Content-Type' => 'application/json'}
@@ -12,7 +9,7 @@ class ModelXDataCollector
     params = {
       query: {
         query: {
-          model: "mx",
+          model: model,
           condition: "used",
           options: {},
           arrangeby: "Price",
@@ -44,7 +41,7 @@ class ModelXDataCollector
       if Car.exists?(car_id: carID)
         @selected_car = Car.find_by!(car_id: carID)
       else
-        Car.create!(car_model: "mx",
+        Car.create!(car_model: model,
           car_id: carID,
           autopilot: true,
           paint:car["OptionCodeSpecs"]["C_OPTS"]["options"][0]["name"],

@@ -4,9 +4,9 @@ task :hello_world => :environment do
 end
 
 
-desc "Gets Model S data from Tesla website"
+desc "Gets car data from Tesla website"
 task :car_data_collector => :environment do
-  ModelSDataCollector.new.call
-  ModelXDataCollector.new.call
-  ModelThreeDataCollector.new.call
+  CarDataCollector.new.call("ms")
+  CarDataCollector.new.call("mx")
+  CarDataCollector.new.call("m3")
 end
