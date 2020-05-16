@@ -9,6 +9,9 @@ gem 'rails', '~> 5.2.4', '>= 5.2.4.2'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'mysql2'
+
+gem 'whenever'
+
 gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
