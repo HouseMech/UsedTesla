@@ -19,9 +19,7 @@
 
 #Run the data collection once a day
 ever 1.day at: '12:00' do
-  rake 'model_s_data_collector'
-  rake 'model_x_data_collector'
-  rake 'model_three_data_collector'
+  rake 'car_data_collector'
 end
 
 # Learn more: http://github.com/javan/whenever
