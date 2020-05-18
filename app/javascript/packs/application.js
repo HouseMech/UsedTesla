@@ -3,4 +3,4 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 
 
-require("hello")
+require("graph")

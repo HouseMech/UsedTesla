@@ -1,8 +1,5 @@
 import Chart from 'chart.js';
 
-
-console.log("hello there!")
-
 $(document).on('turbolinks:load', function() {
 
   var ctx = document.getElementById('myChart').getContext('2d');
