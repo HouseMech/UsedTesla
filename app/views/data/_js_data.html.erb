@@ -1,0 +1,2 @@
+var car_data = <%== json_escape(@current_car_data.to_json(methods: [:car_price]))%>;
+var price_data = car_data[0].car_price;
