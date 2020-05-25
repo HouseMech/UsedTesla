@@ -1,8 +1,8 @@
 import Chart from 'chart.js';
 
 function graphIt() {
-  let prices = car_data.map(item => item.car_price);
-  let labels = car_data.map(item => item.date_acquired)
+  let prices = vehicle_data.map(item => item.car_price);
+  let labels = vehicle_data.map(item => item.date_acquired)
   var ctx = document.getElementById('myChart')
   var chart = new Chart(ctx, {
     // The type of chart we want to create
@@ -12,7 +12,7 @@ function graphIt() {
     data: {
         labels: labels,
         datasets: [{
-            label: 'Car prices',
+            label: 'Vehicle prices',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: prices
