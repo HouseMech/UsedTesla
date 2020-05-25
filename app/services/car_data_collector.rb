@@ -41,8 +41,8 @@ class CarDataCollector
       if Vehicle.exists?(vin: carID)
         @selected_car = Vehicle.find_by!(car_id: carID)
       else
-        Vehicle.create!(car_model: model,
-          car_id: carID,
+        Vehicle.create!(model: model,
+          vin: carID,
           autopilot: true,
           paint:car["OptionCodeSpecs"]["C_OPTS"]["options"][0]["name"],
           interior_decor: car["OptionCodeSpecs"]["C_OPTS"]["options"][2]["name"],
@@ -53,7 +53,7 @@ class CarDataCollector
         )
         @selected_vehicle = Vehicle.find_by!(vin: carID)
       end
-      @selected_vehicle.vehicle_data.create!({car_price: carPrice})
+      @selected_vehicle.vehicle_data.create!({price: carPrice, data_acquired: Date.today})
     end
   end
 end
