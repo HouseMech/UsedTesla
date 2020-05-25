@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_25_201343) do
+ActiveRecord::Schema.define(version: 2020_05_25_202941) do
 
   create_table "vehicle_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "car_price"
+    t.integer "price"
     t.integer "vehicle_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.date "date_acquired"
+    t.date "data_acquired"
   end
 
   create_table "vehicles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "vin"
-    t.string "car_model"
+    t.string "model"
     t.boolean "autopilot"
     t.string "paint"
     t.string "interior_decor"
