@@ -1,3 +1,3 @@
 class Vehicle < ApplicationRecord
-  has_many :car_data
+  has_many :vehicle_data
 end

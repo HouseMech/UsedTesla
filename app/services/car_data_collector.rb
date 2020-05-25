@@ -38,10 +38,10 @@ class CarDataCollector
     for car in carlist["results"]
       carID = car["VIN"] #The Car ID is referred to as VIN on the Tesla website
       carPrice = car["Price"].to_i
-      if Car.exists?(car_id: carID)
-        @selected_car = Car.find_by!(car_id: carID)
+      if Vehicle.exists?(vin: carID)
+        @selected_car = Vehicle.find_by!(car_id: carID)
       else
-        Car.create!(car_model: model,
+        Vehicle.create!(car_model: model,
           car_id: carID,
           autopilot: true,
           paint:car["OptionCodeSpecs"]["C_OPTS"]["options"][0]["name"],
@@ -51,9 +51,9 @@ class CarDataCollector
           top_speed: car["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i,
           battery_range: car["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i
         )
-        @selected_car = Car.find_by!(car_id: carID)
+        @selected_vehicle = Vehicle.find_by!(vin: carID)
       end
-      @selected_car.car_data.create!({car_id: carID, car_price: carPrice})
+      @selected_vehicle.vehicle_data.create!({car_price: carPrice})
     end
   end
 end
