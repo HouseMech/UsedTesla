@@ -1,0 +1,10 @@
+class VehiclesController < ApplicationController
+  def index
+    @vehicles = Vehicle.all
+  end
+
+  def show
+    @current_vehicle = Vehicle.find_by(vin: params[:id])
+    @current_vehicle_data = @current_vehicle.vehicle_data.all
+  end
+end

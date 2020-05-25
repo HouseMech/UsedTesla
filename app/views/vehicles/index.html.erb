@@ -1,0 +1,5 @@
+<ul>
+<% @vehicles.each do |vehicle| %>
+  <li><%= link_to vehicle.vin, vehicle_path(vehicle.vin) %></li>
+<% end %>
+</ul>
