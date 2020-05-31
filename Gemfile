@@ -12,7 +12,7 @@ gem 'webpacker', '~> 4.0'
 
 gem 'whenever'
 
-gem "puma", ">= 3.12.6"
+gem "puma", ">= 4.3.5"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
