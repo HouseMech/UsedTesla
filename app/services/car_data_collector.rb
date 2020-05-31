@@ -48,6 +48,8 @@ class CarDataCollector
           interior_decor: car["OptionCodeSpecs"]["C_OPTS"]["options"][2]["name"],
           tires: car["OptionCodeSpecs"]["C_OPTS"]["options"][1]["name"],
           acceleration_time: car["OptionCodeSpecs"]["C_SPECS"]["options"][0]["name"].to_f,
+          roof: model == "m3" ? "" : car["OptionCodeSpecs"]["C_SPECS"]["options"][5]["name"],
+          vehicle_history: car["VehicleHistory"] == "PREVIOUS ACCIDENT(S)" ? "Previously Repaired" : "Clean History",
           top_speed: car["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i,
           battery_range: car["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i
         )
