@@ -1,5 +1,11 @@
 <ul>
 <% @vehicles.each do |vehicle| %>
-  <li><%= link_to vehicle.vin, vehicle_path(vehicle.vin) %></li>
+  <div>
+    <li><%= link_to vehicle.vin, vehicle_path(vehicle.vin) %></li>
+    <li><%= vehicle.full_model_name %></li>
+    <li><%= vehicle.paint %></li>
+    <li><%= vehicle.tires %></li>
+  </div>
+  <br>
 <% end %>
 </ul>
