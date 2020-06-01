@@ -43,6 +43,8 @@ class VehicleDataCollector
       else
         Vehicle.create!(
           model: model,
+          full_model_name: vehicle["FactoryGatedDate"].to_date.year.to_s + " " + getModel(model),
+          trim_name: model != "m3" ? vehicle["TRIM"] : "TEMPORARY",
           vin: vehicleVIN,
           autopilot: true,
           paint:vehicle["OptionCodeSpecs"]["C_OPTS"]["options"][0]["name"],
@@ -59,4 +61,19 @@ class VehicleDataCollector
       @selected_vehicle.vehicle_data.create!({price: vehiclePrice, data_acquired: Date.today})
     end
   end
+
+  def getModel(model)
+    case model
+    when "ms"
+      then "Model S"
+    when "mx"
+      then "Model X"
+    when "m3"
+      then "Model 3"
+    else
+      "Unknown Model Type"
+    end
+  end
+
+  private :getModel
 end
