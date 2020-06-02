@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_30_200355) do
+ActiveRecord::Schema.define(version: 2020_06_01_191838) do
 
   create_table "vehicle_data", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "price"
@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 2020_05_30_200355) do
     t.integer "top_speed"
     t.integer "battery_range"
     t.string "vehicle_history"
+    t.string "full_model_name"
+    t.string "trim_name"
   end
 
 end

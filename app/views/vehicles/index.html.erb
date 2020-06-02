@@ -1,5 +1,10 @@
-<ul>
 <% @vehicles.each do |vehicle| %>
-  <li><%= link_to vehicle.vin, vehicle_path(vehicle.vin) %></li>
+  <div class="border" style="float: left; width: 200px">
+    <p><%= link_to vehicle.vin, vehicle_path(vehicle.vin) %></p>
+    <p><%= vehicle.full_model_name %></p>
+    <p><%= vehicle.paint %></p>
+    <p><%= vehicle.tires %></p>
+    <br style="clear: left"/>
+  </div>
+
 <% end %>
-</ul>
