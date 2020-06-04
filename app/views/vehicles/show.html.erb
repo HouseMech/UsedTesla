@@ -6,5 +6,5 @@
 <canvas id="myChart"></canvas>
 
 <% if @current_vehicle.sold == true %>
-  <p>This vehicle was sold at <%= @current_vehicle.vehicle_data.last.price %> </p>
+  <p>This vehicle was sold at $<%= @current_vehicle.vehicle_data.last.price %> </p>
 <% end %>
