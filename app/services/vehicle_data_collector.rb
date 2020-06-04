@@ -54,11 +54,25 @@ class VehicleDataCollector
           roof: model != "m3" && model != "mx" ? vehicle["OptionCodeSpecs"]["C_OPTS"]["options"][4]["name"] : "Standard",
           vehicle_history: vehicle["VehicleHistory"] == "PREVIOUS ACCIDENT(S)" ? "Previously Repaired" : "Clean History",
           top_speed: vehicle["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i,
-          battery_range: vehicle["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i
+          battery_range: vehicle["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i,
+          sold: false
         )
         @selected_vehicle = Vehicle.find_by!(vin: vehicleVIN)
       end
       @selected_vehicle.vehicle_data.create!({price: vehiclePrice, data_acquired: Date.today})
+    end
+  end
+
+  #This method should be run only after the call method has been run. It will determine if a vehicle_data entry has been made for a vehicle
+  #today, if not, the car doesn't show up in the Tesla database meaning it has been sold.
+  def isSold()
+    @unsold_vehicles = Vehicle.all.where(sold: false)
+    for vehicle in @unsold_vehicles
+      if vehicle.vehicle_data.all.where(data_acquired: Date.today).empty?
+        vehicle.update(sold: true)
+      else
+        vehicle.update(sold: false)
+      end
     end
   end
 
