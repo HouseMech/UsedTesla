@@ -1,6 +1,10 @@
 class VehiclesController < ApplicationController
   def index
-    @vehicles = Vehicle.all
+    @vehicles = Vehicle.all.where(sold: false)
+  end
+
+  def sold
+    @vehicles = Vehicle.all.where(sold: true)
   end
 
   def show

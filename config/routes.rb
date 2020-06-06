@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'data#index'
 
   resources :vehicles, only: [:index, :show]
+  get '/sold', to: 'vehicles#sold'
 end
