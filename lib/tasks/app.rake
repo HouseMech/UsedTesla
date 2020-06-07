@@ -9,9 +9,5 @@ task :vehicle_data_collector => :environment do
   VehicleDataCollector.new.call("ms")
   VehicleDataCollector.new.call("mx")
   VehicleDataCollector.new.call("m3")
-end
-
-desc "Checks if vehicles have been sold"
-task :vehicle_sold => :environment do
   VehicleDataCollector.new.isSold()
 end
