@@ -66,7 +66,7 @@ class VehicleDataCollector
   #This method should be run only after the call method has been run. It will determine if a vehicle_data entry has been made for a vehicle
   #today, if not, the car doesn't show up in the Tesla database meaning it has been sold.
   def isSold()
-    @unsold_vehicles = Vehicle.all.where(sold: false)
+    @unsold_vehicles = Vehicle.all
     for vehicle in @unsold_vehicles
       if vehicle.vehicle_data.all.where(data_acquired: Date.today).empty?
         vehicle.update(sold: true, sold_date: Date.today)
