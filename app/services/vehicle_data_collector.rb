@@ -69,7 +69,7 @@ class VehicleDataCollector
     @unsold_vehicles = Vehicle.all.where(sold: false)
     for vehicle in @unsold_vehicles
       if vehicle.vehicle_data.all.where(data_acquired: Date.today).empty?
-        vehicle.update(sold: true)
+        vehicle.update(sold: true, sold_date: Date.today)
       else
         vehicle.update(sold: false)
       end
