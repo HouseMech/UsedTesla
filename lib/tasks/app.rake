@@ -9,4 +9,5 @@ task :vehicle_data_collector => :environment do
   VehicleDataCollector.new.call("ms")
   VehicleDataCollector.new.call("mx")
   VehicleDataCollector.new.call("m3")
+  VehicleDataCollector.new.isSold()
 end
