@@ -5,6 +5,20 @@
 
 <canvas id="myChart"></canvas>
 
-<% if @current_vehicle.sold == true %>
-  <p>This vehicle was sold at $<%= @current_vehicle.vehicle_data.last.price %> </p>
-<% end %>
+<div class="border inline">
+  <ul>
+    <li><%=@current_vehicle.full_model_name %></li>
+    <li><%=@current_vehicle.vehicle_history %></li>
+    <li>Original Price: <%=@current_vehicle.vehicle_data.first.price %></li>
+    <li>Current Price: <%=@current_vehicle.vehicle_data.last.price %></li>
+  </ul>
+</div>
+
+<div class = "border inline">
+  <ul>
+    <li><%=@current_vehicle.tires %></li>
+    <li>Acceleration (0-100km/h): <%=@current_vehicle.acceleration_time %>s</li>
+    <li>Top Speed: <%=@current_vehicle.top_speed %>km/h</li>
+    <li>Battery Range (EPA): <%=@current_vehicle.battery_range %>km</li>
+  </ul>
+</div>
