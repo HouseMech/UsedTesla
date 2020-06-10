@@ -13,8 +13,8 @@ function graphIt() {
         labels: labels,
         datasets: [{
             label: 'Vehicle prices',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(114, 147, 203)',
+            fill: false,
             data: prices
         }]
     },
