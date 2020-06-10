@@ -9,8 +9,8 @@
   <ul>
     <li><%=@current_vehicle.full_model_name %></li>
     <li><%=@current_vehicle.vehicle_history %></li>
-    <li>Original Price: <%=@current_vehicle.vehicle_data.first.price %></li>
-    <li>Current Price: <%=@current_vehicle.vehicle_data.last.price %></li>
+    <li>Original Price: $<%=@current_vehicle.vehicle_data.first.price %></li>
+    <li>Current Price: $<%=@current_vehicle.vehicle_data.last.price %></li>
   </ul>
 </div>
 
