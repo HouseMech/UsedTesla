@@ -40,6 +40,9 @@ class VehicleDataCollector
       vehiclePrice = vehicle["Price"].to_i
       if Vehicle.exists?(vin: vehicleVIN)
         @selected_vehicle = Vehicle.find_by!(vin: vehicleVIN)
+        if @selected_vehicle.option_code_list.nil?
+          @selected_vehicle.update!(option_code_list: vehicle["OptionCodeList"])
+        end
       else
         Vehicle.create!(
           model: model,
@@ -55,7 +58,8 @@ class VehicleDataCollector
           vehicle_history: vehicle["VehicleHistory"] == "PREVIOUS ACCIDENT(S)" ? "Previously Repaired" : "Clean History",
           top_speed: vehicle["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i,
           battery_range: vehicle["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i,
-          sold: false
+          sold: false,
+          option_code_list: vehicle["OptionCodeList"]
         )
         @selected_vehicle = Vehicle.find_by!(vin: vehicleVIN)
       end
@@ -88,6 +92,5 @@ class VehicleDataCollector
       "Unknown Model Type"
     end
   end
-
   private :getModel
 end
