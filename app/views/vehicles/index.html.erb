@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
     <% @vehicles.each do |vehicle| %>
-      <div class="col-xs-4" align="center">
-        <img src="https://static-assets.tesla.com/configurator/compositor?&bkba_opt=2&view=STUD_3QTR&size=1400&model=<%= vehicle.model%>&options=<%= vehicle.option_code_list %>" alt="Car" width="75%" height="75%">
+      <div class="border col-sm-4" align="center">
+        <img class="img-fluid" src="https://static-assets.tesla.com/configurator/compositor?&bkba_opt=2&view=STUD_3QTR&size=1400&model=<%= vehicle.model%>&options=<%= vehicle.option_code_list %>" alt="Car">
         <p><%= link_to vehicle.vin, vehicle_path(vehicle.vin) %></p>
         <p><%= vehicle.full_model_name %></p>
         <p><%= vehicle.paint %></p>
