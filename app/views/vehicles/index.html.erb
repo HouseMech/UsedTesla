@@ -1,10 +1,12 @@
 <% @vehicles.each do |vehicle| %>
   <div class="border" style="float: left; width: 200px">
+    <img src="https://static-assets.tesla.com/configurator/compositor?&bkba_opt=2&view=STUD_3QTR&size=1400&model=<%= vehicle.model%>&options=<%= vehicle.option_code_list %>" alt="Car" width="75%" height="75%">
     <p><%= link_to vehicle.vin, vehicle_path(vehicle.vin) %></p>
     <p><%= vehicle.full_model_name %></p>
     <p><%= vehicle.paint %></p>
     <p><%= vehicle.tires %></p>
     <p>Current Price: $<%= vehicle.vehicle_data.last.price %></p>
+    <p>Appeared on: <%= vehicle.vehicle_data.first.data_acquired %></p>
     <br style="clear: left"/>
   </div>
 
