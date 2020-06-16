@@ -1,24 +1,34 @@
 <script>
  <%= render "js_data" %>
 </script>
-<h1><%= @current_vehicle.vin%></h1>
+<h1 align="center"><%= @current_vehicle.vin%></h1>
 
-<canvas id="myChart"></canvas>
-
-<div class="border inline">
-  <ul>
-    <li><%=@current_vehicle.full_model_name %></li>
-    <li><%=@current_vehicle.vehicle_history %></li>
-    <li>Original Price: $<%=@current_vehicle.vehicle_data.first.price %></li>
-    <li>Current Price: $<%=@current_vehicle.vehicle_data.last.price %></li>
-  </ul>
+<div class="col-md-8 offset-md-2">
+  <canvas id="myChart"></canvas>
 </div>
 
-<div class = "border inline">
-  <ul>
-    <li><%=@current_vehicle.tires %></li>
-    <li>Acceleration (0-100km/h): <%=@current_vehicle.acceleration_time %>s</li>
-    <li>Top Speed: <%=@current_vehicle.top_speed %>km/h</li>
-    <li>Battery Range (EPA): <%=@current_vehicle.battery_range %>km</li>
-  </ul>
+<div class="container">
+  <div class="row">
+    <div class="border col-sm-4">
+      <ul>
+        <li><%=@current_vehicle.full_model_name %></li>
+        <li><%=@current_vehicle.vehicle_history %></li>
+        <li>Original Price: $<%=@current_vehicle.vehicle_data.first.price %></li>
+        <li>Current Price: $<%=@current_vehicle.vehicle_data.last.price %></li>
+      </ul>
+    </div>
+
+    <div class = "border col-sm-4">
+      <img class="img-fluid" src="https://static-assets.tesla.com/configurator/compositor?&bkba_opt=2&view=STUD_3QTR&size=1400&model=<%= @current_vehicle.model%>&options=<%= @current_vehicle.option_code_list %>" alt="Car">
+    </div>
+
+    <div class = "border col-sm-4">
+      <ul>
+        <li><%=@current_vehicle.tires %></li>
+        <li>Acceleration (0-100km/h): <%=@current_vehicle.acceleration_time %>s</li>
+        <li>Top Speed: <%=@current_vehicle.top_speed %>km/h</li>
+        <li>Battery Range (EPA): <%=@current_vehicle.battery_range %>km</li>
+      </ul>
+    </div>
+  </div>
 </div>
