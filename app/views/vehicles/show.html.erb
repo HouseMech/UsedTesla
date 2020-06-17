@@ -15,6 +15,7 @@
         <li><%=@current_vehicle.vehicle_history %></li>
         <li>Original Price: $<%=@current_vehicle.vehicle_data.first.price %></li>
         <li>Current Price: $<%=@current_vehicle.vehicle_data.last.price %></li>
+        <li>Last Updated on <%=@current_vehicle.vehicle_data.last.data_acquired %></li>
       </ul>
     </div>
 
