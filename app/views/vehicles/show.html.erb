@@ -14,7 +14,12 @@
         <li><%=@current_vehicle.full_model_name %></li>
         <li><%=@current_vehicle.vehicle_history %></li>
         <li>Original Price: $<%=@current_vehicle.vehicle_data.first.price %></li>
-        <li>Current Price: $<%=@current_vehicle.vehicle_data.last.price %></li>
+        <% if !@current_vehicle.sold_date.nil? %>
+          <li>Sold at: $<%=@current_vehicle.vehicle_data.last.price %></li>
+        <% else %>
+          <li>Current Price: $<%=@current_vehicle.vehicle_data.last.price %></li>
+        <% end %>
+
         <li>Last Updated on <%=@current_vehicle.vehicle_data.last.data_acquired %></li>
       </ul>
     </div>
