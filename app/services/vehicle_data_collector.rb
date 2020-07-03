@@ -35,35 +35,40 @@ class VehicleDataCollector
       req.params = params
     end
     vehiclelist = JSON.parse(resp.body)
-    for vehicle in vehiclelist["results"]
-      vehicleVIN = vehicle["VIN"] #The vehicle ID is referred to as VIN on the Tesla website
-      vehiclePrice = vehicle["Price"].to_i
-      if Vehicle.exists?(vin: vehicleVIN)
-        @selected_vehicle = Vehicle.find_by!(vin: vehicleVIN)
-        if @selected_vehicle.option_code_list.nil?
-          @selected_vehicle.update!(option_code_list: vehicle["OptionCodeList"])
+    if vehiclelist["total_matches_found"] != 0
+      for vehicle in vehiclelist["results"]
+        vehicleVIN = vehicle["VIN"] #The vehicle ID is referred to as VIN on the Tesla website
+        vehiclePrice = vehicle["Price"].to_i
+        if Vehicle.exists?(vin: vehicleVIN)
+          @selected_vehicle = Vehicle.find_by!(vin: vehicleVIN)
+          @selected_vehicle.update!(sold: false)
+          if @selected_vehicle.option_code_list.nil?
+            @selected_vehicle.update!(option_code_list: vehicle["OptionCodeList"])
+          end
+        else
+          Vehicle.create!(
+            model: model,
+            full_model_name: vehicle["FactoryGatedDate"].to_date.year.to_s + " " + getModel(model),
+            trim_name: model != "m3" ? vehicle["TRIM"] : "TEMPORARY",
+            vin: vehicleVIN,
+            autopilot: true,
+            paint:vehicle["OptionCodeSpecs"]["C_OPTS"]["options"][0]["name"],
+            interior_decor: vehicle["OptionCodeSpecs"]["C_OPTS"]["options"][2]["name"],
+            tires: vehicle["OptionCodeSpecs"]["C_OPTS"]["options"][1]["name"],
+            acceleration_time: vehicle["OptionCodeSpecs"]["C_SPECS"]["options"][0]["name"].to_f,
+            roof: model != "m3" && model != "mx" ? vehicle["OptionCodeSpecs"]["C_OPTS"]["options"][4]["name"] : "Standard",
+            vehicle_history: vehicle["VehicleHistory"] == "PREVIOUS ACCIDENT(S)" ? "Previously Repaired" : "Clean History",
+            top_speed: vehicle["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i,
+            battery_range: vehicle["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i,
+            sold: false,
+            option_code_list: vehicle["OptionCodeList"]
+          )
+          @selected_vehicle = Vehicle.find_by!(vin: vehicleVIN)
         end
-      else
-        Vehicle.create!(
-          model: model,
-          full_model_name: vehicle["FactoryGatedDate"].to_date.year.to_s + " " + getModel(model),
-          trim_name: model != "m3" ? vehicle["TRIM"] : "TEMPORARY",
-          vin: vehicleVIN,
-          autopilot: true,
-          paint:vehicle["OptionCodeSpecs"]["C_OPTS"]["options"][0]["name"],
-          interior_decor: vehicle["OptionCodeSpecs"]["C_OPTS"]["options"][2]["name"],
-          tires: vehicle["OptionCodeSpecs"]["C_OPTS"]["options"][1]["name"],
-          acceleration_time: vehicle["OptionCodeSpecs"]["C_SPECS"]["options"][0]["name"].to_f,
-          roof: model != "m3" && model != "mx" ? vehicle["OptionCodeSpecs"]["C_OPTS"]["options"][4]["name"] : "Standard",
-          vehicle_history: vehicle["VehicleHistory"] == "PREVIOUS ACCIDENT(S)" ? "Previously Repaired" : "Clean History",
-          top_speed: vehicle["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i,
-          battery_range: vehicle["OptionCodeSpecs"]["C_SPECS"]["options"][1]["name"].to_i,
-          sold: false,
-          option_code_list: vehicle["OptionCodeList"]
-        )
-        @selected_vehicle = Vehicle.find_by!(vin: vehicleVIN)
+        @selected_vehicle.vehicle_data.create!({price: vehiclePrice, data_acquired: Date.today})
       end
-      @selected_vehicle.vehicle_data.create!({price: vehiclePrice, data_acquired: Date.today})
+    else
+      puts "No vehicle data available for these parameters."
     end
   end
 
